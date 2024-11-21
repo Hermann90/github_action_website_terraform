@@ -108,7 +108,7 @@ jobs:
         run: |
           terraform init -input=false
           terraform refresh
-          terraform apply -auto-approve tfdestroy
+          terraform destroy -auto-approve
 
 # version: 2
 
