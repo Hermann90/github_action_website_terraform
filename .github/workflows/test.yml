@@ -49,6 +49,9 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.5.0
+            
+      - name: Terraform Init
+        run: terraform init
 
       - name: Download artifact
         uses: actions/download-artifact@v3
@@ -57,7 +60,7 @@ jobs:
 
       - name: Use the tfapply artifact
         run: |
-          terraform apply -auto-approve tfapply
+          terraform apply tfapply -auto-approve 
           terraform plan -destroy -out tfdestroy
       
       - name: Upload artifact for terraform apply
@@ -91,8 +94,8 @@ jobs:
         with:
           terraform_version: 1.5.0
 
-      # - name: Terraform Init
-      #   run: terraform init
+      - name: Terraform Init
+        run: terraform init
 
       # - name: Terraform Destroy
       #   run: terraform destroy -auto-approve
