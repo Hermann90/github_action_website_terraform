@@ -62,13 +62,12 @@ jobs:
         run: |
           terraform init -input=false
           terraform apply -auto-approve tfapply 
-          terraform plan -destroy -out tfdestroy
       
-      - name: Upload artifact for terraform apply
+      - name: Upload Terraform state
         uses: actions/upload-artifact@v3
         with:
-          name: build-output-tfdestroy
-          path: tfdestroy
+          name: terraform-state
+          path: terraform.tfstate
 
   wait-for-approval:
     runs-on: ubuntu-latest
@@ -103,7 +102,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
-          name: build-output-tfdestroy
+          name: terraform-state
 
       - name: Use the tfdestroy artifact
         run: |

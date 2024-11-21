@@ -52,6 +52,7 @@ resource "aws_instance" "web" {
               EOF
 
     tags = {
+    Name        = "github_action_webserver"
     owner       = "github-action"
     Environment = "dev"
   }
