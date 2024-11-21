@@ -50,8 +50,8 @@ jobs:
         with:
           terraform_version: 1.5.0
             
-      - name: Terraform Init
-        run: terraform init
+      # - name: Terraform Init
+      #   run: terraform init
 
       - name: Download artifact
         uses: actions/download-artifact@v3
@@ -60,7 +60,8 @@ jobs:
 
       - name: Use the tfapply artifact
         run: |
-          terraform apply tfapply -auto-approve 
+          terraform init -input=false
+          terraform apply -auto-approve tfapply 
           terraform plan -destroy -out tfdestroy
       
       - name: Upload artifact for terraform apply
@@ -94,8 +95,8 @@ jobs:
         with:
           terraform_version: 1.5.0
 
-      - name: Terraform Init
-        run: terraform init
+      # - name: Terraform Init
+      #   run: terraform init
 
       # - name: Terraform Destroy
       #   run: terraform destroy -auto-approve
@@ -106,6 +107,7 @@ jobs:
 
       - name: Use the tfdestroy artifact
         run: |
+          terraform init -input=false
           terraform apply -auto-approve tfdestroy
 
 # version: 2
