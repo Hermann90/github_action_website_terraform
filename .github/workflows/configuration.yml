@@ -32,8 +32,7 @@ jobs:
         with:
           name: build-output-tfapply
           path: tfapply
-
-      
+ 
   # The apply-plan Job - Download the plan generated in the previous phase. apply this plan, then save the terraform.tfstate generated as artifact
   apply-plan:
     runs-on: ubuntu-latest
