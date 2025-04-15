@@ -28,7 +28,7 @@ jobs:
             terraform plan -out tfapply
     
       - name: Upload artifact for terraform apply
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: build-output-tfapply
           path: tfapply
