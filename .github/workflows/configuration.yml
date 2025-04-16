@@ -7,6 +7,7 @@ on:
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  terraform_version: 1.5.0
 
 jobs:
 
@@ -20,7 +21,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.5.0
+          terraform_version: ${{ terraform_version }}
       
       - name: terraform init & plan
         run: |
@@ -96,4 +97,3 @@ jobs:
           terraform init -input=false
           terraform refresh
           terraform destroy -auto-approve
-
